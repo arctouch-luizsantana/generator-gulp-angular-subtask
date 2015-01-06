@@ -126,10 +126,14 @@ var MyBase = module.exports = generators.NamedBase.extend({
   _getFileTypeCheck: function(type, defaultType, optionType) {
     var config = this.config.get('props');
     var fileType = defaultType;
+
     if (typeof this.options[optionType] !== 'undefined') {
       fileType = this.options[optionType];
     }
     else {
+      if (!config)
+        return fileType;
+
       fileType = config[type];
     }
     return fileType;
